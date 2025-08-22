@@ -1,220 +1,749 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Youtube</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-</head>
-<style>
-    *{
-        margin: 0px;
-        padding: 0px;
-        font-family: "Roboto", sans-serif;
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+      integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+      font-family: "Roboto", sans-serif;
     }
-    .container{
-        width: 100dvw;
-        height: 100dvh;
-        background-color: black;
+    .container {
+      width: 100dvw;
+      height: 100dvh;
+      background-color: var(--yt-bg-primary);
     }
-    .left{
-        width: 15dvw;
-        height: 100dvh;
-        background-color: bisque;
-        position: fixed;
-        top: 0;
-        left: 0;
+    .left {
+      width: 15dvw;
+      height: 100dvh;
+      background-color: white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      overflow: scroll;
+      display: flex;
+      scrollbar-width: none;
     }
-    .top{
-        width: 85dvw;
-        height: 15dvh;
-        background-color: aqua;
-        position: fixed;
-        top: 0;
-        right: 0;
+    .top {
+      width: 85dvw;
+      height: 15dvh;
+      background-color: white;
+      position: fixed;
+      top: 0;
+      right: 0;
     }
-    .main{
-        width: 85dvw;
-        height: 85dvh;
-        background-color: brown;
-        overflow: scroll;
-        position: fixed;
-        top: 15dvh;
-        right: 0;
-        display: flex;
-        flex-wrap: wrap;
+    .main {
+      width: 85dvw;
+      height: 85dvh;
+      background-color: white;
+      overflow: scroll;
+      position: fixed;
+      top: 15dvh;
+      right: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
     }
-    .video{
-        height: 250px;
-        width: 300px;
-        background-color: rgb(7, 7, 7);
+    .video {
+      height: 250px;
+      width: 300px;
+      background-color: white;
+      margin: 20px;
+      border-radius: 10px;
+    }
+    .play {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .title {
+      color: black;
+      margin: 10px 20px;
+      font-weight: 500;
+    }
+    .views {
+      color: rgb(11, 11, 11);
+      margin: 10px 20px;
+      font-weight: 300;
+      opacity: 0.4;
+    }
+    .first {
+      width: 100%;
+      height: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .searchdiv{
+      display: flex;
+    }
+    .second {
+      width: 100%;
+      height: 50%;
+      background-color: white;
+      padding: 5px;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+    }
+    .scroll {
+      overflow: scroll;
+      display: flex;
+      scrollbar-width: none;
+      height: 100%;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+    .scroll p:hover {
+      transition: 0.4s all ease;
+      background-color: rgba(6, 6, 6, 0.692);
+      color: white;
+      .scroll p {
+        opacity: 1;
+        transition: 0.5s all ease-in-out;
+        background-color: none;
+      }
+    }
+    .scroll p {
+      color: black;
+      background-color: white;
+      border-radius: 5px;
+      padding: 4px;
+      font-size: 12px;
+      margin: 3px;
+      cursor: pointer;
+      margin: 5px;
+    }
+    .search {
+      height: 15px;
+      width: 30%;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 25px 0px 0px 25px;
+      margin: 10px 0px;
+      padding: 8px;
+      border-left: 1px solid rgb(194, 194, 194);
+      border-top: 1px solid rgb(194, 194, 194);
+      border-bottom: 1px solid rgb(194, 194, 194);
+    }
+    .formtag1 {
+      width: 90%;
+      padding: 0 10px;
+      cursor: pointer;
+    }
+    .formtag2 {
+      border: none;
+      outline: none;
+      width: 100%;
+      cursor: pointer;
+    }
+    .searchbar {
+      height: 31px;
+      width: 40px;
+      margin: 0px;
+      background-color: rgb(235, 233, 233);
+      border-radius: 0px 25px 25px 0px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      border-right: 1px solid rgb(194, 194, 194);
+      border-top: 1px solid rgb(194, 194, 194);
+      border-bottom: 1px solid rgb(194, 194, 194);
+    }
+    .searchbar:hover {
+      transition: 0.4s all ease;
+      background-color: rgba(183, 179, 179, 0.692);
+    }
+    .mic {
+      background-color: rgb(235, 233, 233);
+      padding: 6px;
+      border-radius: 25px;
+      opacity: 0.9;
+      margin: 20px;
+      cursor: pointer;
+    }
+    .mic:hover {
+      transition: 0.4s all ease;
+      background-color: rgba(183, 179, 179, 0.692);
+    }
+    .create {
+      background-color: rgb(235, 233, 233);
+      padding: 6px;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+    .create:hover {
+      transition: 0.4s all ease;
+      background-color: rgba(183, 179, 179, 0.692);
+    }
+    .bell {
+      padding: 10px;
+      border-radius: 25px;
+      cursor: pointer;
+      margin: 20px;
+    }
+    .bell:hover {
+      transition: 0.4s all ease;
+      background-color: rgba(183, 179, 179, 0.692);
+      .bell {
+        opacity: 1;
+        transition: 0.5s all ease-in-out;
+        background-color: none;
+      }
+    }
+    .mail {
+      height: 18px;
+      width: 18px;
+      padding: 10px;
+      border-radius: 25px;
+      cursor: pointer;
+      margin: 25px;
+      text-align: center;
+      color: white;
+      background-color: rgb(201, 12, 12);
+      margin-right: 0px;
+    }
+    .div1 {
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      margin-top: 20px;
+      i {
         margin: 10px;
-        border-radius: 10px;
+      }
+      border-bottom: 0.2px solid rgb(173, 170, 170);
     }
-    .play{
-        width: 100%;
-        border-radius: 10px;
+    .div2 {
+      background-color: white;
+      margin-bottom: 20px;
+      i {
+        margin: 10px;
+      }
+      border-bottom: 0.2px solid rgb(173, 170, 170);
     }
-    .title{
-        color: rgb(245, 243, 243);
-        margin: 10px 20px;
-        font-weight: 500;
+    .div3 {
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      margin-bottom: 10px;
+      border-bottom: 0.2px solid rgb(173, 170, 170);
     }
-    .views{
-        color: rgb(248, 248, 248);
-        margin: 10px 20px;
-        font-weight: 300;
-        opacity: 0.4;
+    .box {
+      background-color: white;
+      color: black;
+      transition: 0.4s all ease;
+      margin-left: 3px;
+      margin-right: 3px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: row;
     }
-    .first{
-        width: 100%;
-        height: 50%;
+    .icon {
+      width: 30%;
+      font-size: 15px;
+      cursor: pointer;
+      border-radius: 10px 0px 0px 10px;
+      /* background-color: rgb(51, 244, 189); */
     }
-    .second{
-        width: 100%;
-        height: 30%;
-        background-color: blue;
-        padding: 3px;
-        display: flex;
-        justify-content: start;
-        align-items: center;
+
+    .text {
+      width: 70%;
+      padding: 8px;
+      cursor: pointer;
+      border-radius: 0px 10px 10px 0px;
+      /* background-color: aquamarine; */
     }
-    .scroll{
-        overflow: scroll;
-        display: flex;
-        scrollbar-width: none;
-    height: 100%;
+
+    .box:hover {
+      background-color: rgba(183, 179, 179, 0.692);
+      .box {
+        opacity: 1;
+        /* transition: 0.5s all ease-in-out; */
+        background-color: none;
+      }
     }
-    .scroll p{
-        color: black;
-        background-color: white;
-        border-radius: 5px;
-        padding:4px;
-        font-size: 12px;
-        margin: 3px;
-        cursor: pointer;
+    .subscriptions {
+      font-size: 15px;
+      cursor: pointer;
+      border-radius: 10px;
+      background-color: white;
+      margin-left: 3px;
+      margin-right: 3px;
+      padding: 10px;
     }
-</style>
-<body>
+    .subscriptions:hover {
+      transition: 0.4s all ease;
+      background-color: rgba(224, 224, 224, 0.692);
+      .subscription {
+        opacity: 1;
+        transition: 0.5s all ease-in-out;
+        background-color: none;
+      }
+    }
+    .div4 {
+      margin-top: 10px;
+      cursor: pointer;
+      background-color: white;
+      padding: 10px;
+      border-radius: 10px;
+      margin-left: 3px;
+      margin-right: 3px;
+    }
+    .div4:hover {
+      transition: 0.4s all ease;
+      background-color: rgba(224, 224, 224, 0.692);
+      .subscription {
+        opacity: 1;
+        transition: 0.5s all ease-in-out;
+        background-color: none;
+      }
+    }
+    .div5 {
+      background-color: white;
+      margin-bottom: 10px;
+      i {
+        margin: 10px;
+      }
+
+      border-bottom: 0.2px solid rgb(173, 170, 170);
+    }
+    .div6 {
+      margin-top: 10px;
+      background-color: white;
+      padding: 5px;
+      border-radius: 10px;
+      margin-left: 3px;
+      margin-right: 3px;
+    }
+    .setting {
+      margin-top: 10px;
+      cursor: pointer;
+      background-color: white;
+      padding: 10px;
+      border-radius: 10px;
+      margin-left: 3px;
+      margin-right: 3px;
+    }
+    .setting:hover {
+      transition: 0.4s all ease;
+      background-color: rgba(224, 224, 224, 0.692);
+      .setting {
+        opacity: 1;
+        transition: 0.5s all ease-in-out;
+        background-color: none;
+      }
+    }
+    .report {
+      margin-top: 10px;
+      cursor: pointer;
+      background-color: white;
+      padding: 10px;
+      border-radius: 10px;
+      margin-left: 3px;
+      margin-right: 3px;
+    }
+    .report:hover {
+      transition: 0.4s all ease;
+      background-color: rgba(224, 224, 224, 0.692);
+      .setting {
+        opacity: 1;
+        transition: 0.5s all ease-in-out;
+        background-color: none;
+      }
+    }
+    .c {
+      margin: 5px;
+    }
+    .d {
+      i {
+        margin: 5px;
+        margin-top: 10px;
+      }
+    }
+    .youtube {
+      margin-top: 10px;
+      width: 15dvw;
+      background-color: white;
+      display: flex;
+      padding: 5px;
+    }
+    .bar {
+      cursor: pointer;
+      background-color: white;
+      border-radius: 12px;
+      padding: 5px;
+    }
+    .bar:hover {
+      transition: 0.4s all ease;
+      background-color: rgba(224, 224, 224, 0.692);
+      .bar {
+        opacity: 1;
+        transition: 0.5s all ease-in-out;
+        background-color: none;
+      }
+    }
+    .y {
+      margin-left: 5px;
+      padding: 5px;
+      i {
+        color: red;
+        b{
+          color: black;
+        }
+      }
+      
+      cursor: pointer;
+    }
+    .image {
+      height: 20px;
+      width: 20px;
+      background-color: black;
+      border-radius: 10px;
+      margin-top: 8px;
+      margin-left: 3px;
+    }
+  </style>
+  <body>
     <div class="container">
-        <div class="left">
-            <i class="fa-brands fa-youtube"></i>
-            <div class="div1">
-                <i class="fas fa-house"></i>
-            <i class="fas fa-bolt"></i>
-            <i class="fas fa-clapperboard">
-            </div>
-            <i class="fa-regular fa-clock"></i>
-            <i class="fas fa-photo-film"></i>
-            
-            <i class="fas fa-clock-rotate-left"></i>
-            <i class="fas fa-thumbs-up"></i>
+      <div class="left">
+        <div class="youtube">
+          <div class="bar">
+            <i class="fa-solid fa-bars"></i>
+          </div>
+          <div class="y">
+            <i class="fa-brands fa-youtube"><b>YouTube</b></i>
+          </div>
+        </div>
 
-        </div>
-        <div class="top">
-            <div class="first">
+        <div class="div1">
+          <div class="box b1">
+            <div class="icon">
+              <i class="fas fa-house"></i>
+            </div>
+            <div class="text">
+              <p>Home</p>
+            </div>
+          </div>
+          <div class="box b2">
+            <div class="icon">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <div class="text">
+              <p>Shorts</p>
+            </div>
+          </div>
 
+          <div class="box b3">
+            <div class="icon">
+              <i class="fa-regular fa-clock"></i>
             </div>
-            <div class="second">
-                <div class="scroll">
-                    <p>All</p>
-                    <p>GateExam</p>
-                    <p>CAT</p>
-                    <p>Goals</p>
-                    <p>Confidence</p>
-                    <p>Photography</p>
-                    <p>Plan</p>
-                    <p>Studyskills</p>
-                    <p>Colleges</p>
-                    <p>SelfMotivation</p>
-                    <p>Tripods</p>
-                    <p>Live</p>
-                    <p>Website</p>
-                    <p>Ideas</p>
-                    <p>Podcasts</p>
-                    <p>Wealth</p>
-                    <p>Graphic Design</p>
-                </div>
+            <div class="text">
+              <p>Subsciptions</p>
             </div>
+          </div>
         </div>
-        <div class="main">
-            <div class="video">
-                <img class="play" src="video1.png" alt="">
-                <p class="title">2 AM COFFEE - A short film | Sony FX3 | 4K</p>
-                <p class="views">27M views . 4hours ago</p>
-                
-            </div>
-            <div class="video">
-                <img class="play" src="video1.png" alt="">
-                <p class="title">2 AM COFFEE - A short film | Sony FX3 | 4K</p>
-                <p class="views">27M views . 4hours ago</p>
-                
-            </div>
-            <div class="video">
-                <img class="play" src="video1.png" alt="">
-                <p class="title">2 AM COFFEE - A short film | Sony FX3 | 4K</p>
-                <p class="views">27M views . 4hours ago</p>
-                
-            </div>
-            <div class="video">
-                <img class="play" src="video1.png" alt="">
-                <p class="title">2 AM COFFEE - A short film | Sony FX3 | 4K</p>
-                <p class="views">27M views . 4hours ago</p>
-                
-            </div>
-            <div class="video">
-                <img class="play" src="video1.png" alt="">
-                <p class="title">2 AM COFFEE - A short film | Sony FX3 | 4K</p>
-                <p class="views">27M views . 4hours ago</p>
-                
-            </div>
-            <div class="video">
-                <img class="play" src="video1.png" alt="">
-                <p class="title">2 AM COFFEE - A short film | Sony FX3 | 4K</p>
-                <p class="views">27M views . 4hours ago</p>
-                
-            </div>
-            <div class="video">
-                <img class="play" src="video1.png" alt="">
-                <p class="title">2 AM COFFEE - A short film | Sony FX3 | 4K</p>
-                <p class="views">27M views . 4hours ago</p>
-                
-            </div>
-            <div class="video">
-                <img class="play" src="video1.png" alt="">
-                <p class="title">2 AM COFFEE - A short film | Sony FX3 | 4K</p>
-                <p class="views">27M views . 4hours ago</p>
-                
-            </div>
-            <div class="video">
-                <img class="play" src="video1.png" alt="">
-                <p class="title">2 AM COFFEE - A short film | Sony FX3 | 4K</p>
-                <p class="views">27M views . 4hours ago</p>
-                
-            </div>
-            <div class="video">
-                <img class="play" src="video1.png" alt="">
-                <p class="title">2 AM COFFEE - A short film | Sony FX3 | 4K</p>
-                <p class="views">27M views . 4hours ago</p>
-                
-            </div>
-            <div class="video">
-                <img class="play" src="video1.png" alt="">
-                <p class="title">2 AM COFFEE - A short film | Sony FX3 | 4K</p>
-                <p class="views">27M views . 4hours ago</p>
-                
-            </div>
-            <div class="video">
-                <img class="play" src="video1.png" alt="">
-                <p class="title">2 AM COFFEE - A short film | Sony FX3 | 4K</p>
-                <p class="views">27M views . 4hours ago</p>
-                
-            </div>
-            
+        <div class="div4">
+          <p>You></p>
         </div>
+
+        <div class="div2">
+          <div class="box b4">
+            <div class="icon">
+              <i class="fas fa-clock-rotate-left"></i>
+            </div>
+            <div class="text">
+              <p>History</p>
+            </div>
+          </div>
+          <div class="box b5">
+            <div class="icon">
+              <i class="fa-regular fa-clock"></i>
+            </div>
+            <div class="text">
+              <p>Watchlater</p>
+            </div>
+          </div>
+
+          <div class="box b6">
+            <div class="icon">
+              <i class="fas fa-photo-film"></i>
+            </div>
+            <div class="text">
+              <p>Playlists</p>
+            </div>
+          </div>
+          <div class="box b7">
+            <div class="icon">
+              <i class="fas fa-thumbs-up"></i>
+            </div>
+            <div class="text">
+              <p>Likedvideos</p>
+            </div>
+          </div>
+        </div>
+        <div class="subscriptions">
+          <p>Subscriptions</p>
+        </div>
+        <div class="div3">
+          <div class="box b8">
+            <div class="icon">
+              <img class="image" src="ik.png" alt="" />
+            </div>
+            <div class="text">
+              <p>Swaroop</p>
+            </div>
+          </div>
+          <div class="box b9">
+            <div class="icon">
+              <img class="image" src="ik.png" alt="" />
+            </div>
+            <div class="text">
+              <p>Sahil&sara</p>
+            </div>
+          </div>
+        </div>
+        <div class="div6">
+          <p>Explore</p>
+        </div>
+        <div class="div5">
+          <div class="box">
+            <div class="icon">
+              <i class="fas fa-bag-shopping"></i>
+            </div>
+            <div class="text">
+              <p>Shopping</p>
+            </div>
+          </div>
+          <div class="box">
+            <div class="icon">
+              <i class="fas fa-music"></i>
+            </div>
+            <div class="text">
+              <p>Music</p>
+            </div>
+          </div>
+          <div class="box">
+            <div class="icon">
+              <i class="fas fa-clapperboard"></i>
+            </div>
+            <div class="text">
+              <p>Films</p>
+            </div>
+          </div>
+          <div class="box">
+            <div class="icon">
+              <i class="fas fa-signal"></i>
+            </div>
+            <div class="text">
+              <p>Live</p>
+            </div>
+          </div>
+          <div class="box">
+            <div class="icon">
+              <i class="fas fa-gamepad"></i>
+            </div>
+            <div class="text">
+              <p>Gaming</p>
+            </div>
+          </div>
+          <div class="box">
+            <div class="icon">
+              <i class="far fa-newspaper"></i>
+            </div>
+            <div class="text">
+              <p>News</p>
+            </div>
+          </div>
+          <div class="box">
+            <div class="icon">
+              <i class="fas fa-trophy"></i>
+            </div>
+            <div class="text">
+              <p>Sport</p>
+            </div>
+          </div>
+          <div class="box">
+            <div class="icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="text">
+              <p>Courses</p>
+            </div>
+          </div>
+          <div class="box">
+            <div class="icon">
+              <i class="fas fa-person-dress"></i>
+            </div>
+            <div class="text">
+              <p>Fashion & beauty</p>
+            </div>
+          </div>
+          <div class="box">
+            <div class="icon">
+              <i class="fas fa-podcast"></i>
+            </div>
+            <div class="text">
+              <p>Podcasts</p>
+            </div>
+          </div>
+        </div>
+        <div class="box c">
+          <div class="icon d">
+            <i class="fa-solid fa-gear"></i>
+          </div>
+          <div class="text">
+            <p>Settings</p>
+          </div>
+        </div>
+        <div class="box c">
+          <div class="icon d">
+            <i class="fa-solid fa-flag"></i>
+          </div>
+          <div class="text">
+            <p>Report</p>
+          </div>
+        </div>
+        <div class="box c">
+          <div class="icon d">
+            <i class="fa-solid fa-circle-question"></i>
+          </div>
+          <div class="text">help</div>
+        </div>
+      </div>
+      <div class="top">
+        <div class="first">
+          <div class="search">
+            <form action="https://www.google.com/search?" class="formtag1">
+              <input
+                type="text"
+                class="formtag2"
+                name="q"
+                id=" "
+                placeholder="Search"
+              />
+            </form>
+          </div>
+          <div class="searchbar">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+          <div class="mic">
+            <i class="fa-solid fa-microphone"></i>
+          </div>
+          <div class="create">+ create</div>
+          <div class="bell">
+            <i class="fa-solid fa-bell"></i>
+          </div>
+          <div class="mail">
+            <p>R</p>
+          </div>
+        </div>
+        <div class="second">
+          <div class="scroll">
+            <p>All</p>
+            <p>GateExam</p>
+            <p>CAT</p>
+            <p>Goals</p>
+            <p>Confidence</p>
+            <p>Photography</p>
+            <p>Plan</p>
+            <p>Studyskills</p>
+            <p>Colleges</p>
+            <p>SelfMotivation</p>
+            <p>Tripods</p>
+            <p>Live</p>
+            <p>Website</p>
+            <p>Ideas</p>
+            <p>Podcasts</p>
+            <p>Wealth</p>
+            <p>GraphicDesign</p>
+          </div>
+        </div>
+      </div>
+      <div class="main">
+        <div class="video">
+          <img class="play" src="video1.png" alt="" />
+          <p class="title">2 AM COFFEE - A short film | Sony FX3 | 4K</p>
+          <p class="views">27M views . 4hours ago</p>
+        </div>
+        <div class="video">
+          <img class="play" src="video1.png" alt="" />
+          <p class="title">2 AM COFFEE - A short film | Sony FX3 | 4K</p>
+          <p class="views">27M views . 4hours ago</p>
+        </div>
+        <div class="video">
+          <img class="play" src="video1.png" alt="" />
+          <p class="title">2 AM COFFEE - A short film | Sony FX3 | 4K</p>
+          <p class="views">27M views . 4hours ago</p>
+        </div>
+        <div class="video">
+          <img class="play" src="video1.png" alt="" />
+          <p class="title">2 AM COFFEE - A short film | Sony FX3 | 4K</p>
+          <p class="views">27M views . 4hours ago</p>
+        </div>
+        <div class="video">
+          <img class="play" src="video1.png" alt="" />
+          <p class="title">2 AM COFFEE - A short film | Sony FX3 | 4K</p>
+          <p class="views">27M views . 4hours ago</p>
+        </div>
+        <div class="video">
+          <img class="play" src="video1.png" alt="" />
+          <p class="title">2 AM COFFEE - A short film | Sony FX3 | 4K</p>
+          <p class="views">27M views . 4hours ago</p>
+        </div>
+        <div class="video">
+          <img class="play" src="video1.png" alt="" />
+          <p class="title">2 AM COFFEE - A short film | Sony FX3 | 4K</p>
+          <p class="views">27M views . 4hours ago</p>
+        </div>
+        <div class="video">
+          <img class="play" src="video1.png" alt="" />
+          <p class="title">2 AM COFFEE - A short film | Sony FX3 | 4K</p>
+          <p class="views">27M views . 4hours ago</p>
+        </div>
+        <div class="video">
+          <img class="play" src="video1.png" alt="" />
+          <p class="title">2 AM COFFEE - A short film | Sony FX3 | 4K</p>
+          <p class="views">27M views . 4hours ago</p>
+        </div>
+        <div class="video">
+          <img class="play" src="video1.png" alt="" />
+          <p class="title">2 AM COFFEE - A short film | Sony FX3 | 4K</p>
+          <p class="views">27M views . 4hours ago</p>
+        </div>
+        <div class="video">
+          <img class="play" src="video1.png" alt="" />
+          <p class="title">2 AM COFFEE - A short film | Sony FX3 | 4K</p>
+          <p class="views">27M views . 4hours ago</p>
+        </div>
+        <div class="video">
+          <img class="play" src="video1.png" alt="" />
+          <p class="title">2 AM COFFEE - A short film | Sony FX3 | 4K</p>
+          <p class="views">27M views . 4hours ago</p>
+        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
